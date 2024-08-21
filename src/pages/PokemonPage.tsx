@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import '../App.css';
-import {pokemonService} from "../services/api.service";
+import {pokemonActions, useAppDispatch, useAppSelector} from "../redux/store";
 
 const PokemonPage = () => {
+    const dispatch = useAppDispatch();
+    const {pokemonResult} = useAppSelector(state => state.pokemonPaginationResultSliceState)
     useEffect(() => {
-    console.log(pokemonService.getAllPokemon())
-    }, []);
-
+        dispatch(pokemonActions.loadPokemonWithPagination());
+    }, [dispatch]);
     return (
         <div>
 

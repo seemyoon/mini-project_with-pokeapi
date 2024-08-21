@@ -7,10 +7,15 @@ const axiosInstance = axios.create({
     baseURL: baseURL,
     headers: {}
 })
+// axiosInstance.interceptors.request.use(request => {
+//     request.headers.set("Content-Type", "application/json")
+//     return request;
+// })
 const pokemonService = {
     getAllPokemon: async (): Promise<IPokemonPaginationModel> => {
         const res = await axiosInstance.get<IPokemonPaginationModel>(urlBuilder.allPokemon)
         return res.data
     }
 }
+
 export {pokemonService}
