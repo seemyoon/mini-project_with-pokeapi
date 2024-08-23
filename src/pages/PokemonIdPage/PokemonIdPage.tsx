@@ -4,7 +4,7 @@ import {pokemonActions, useAppDispatch, useAppSelector} from "../../redux/store"
 import PokemonFormComponent from "../../components/PokemonFormListComponent/PokemonFormComponent";
 
 const PokemonIdPage = () => {
-    const chooseFormState = useAppSelector(state => state.pokemonFormSlice.chooseForm)
+    const {toggleForm, chooseForm} = useAppSelector(state => state.pokemonFormSlice)
     const params = useParams()
     const dispatch = useAppDispatch()
     const {pokemon} = useAppSelector(state => state.pokemonSliceState)
@@ -35,19 +35,23 @@ const PokemonIdPage = () => {
             </div>
             <PokemonFormComponent key={pokemon?.id} pokemonId={pokemon?.id}/>
             <hr/>
-            <div>
-                {chooseFormState === "default" ? (
-                    <div>
-                        <img src={pokemon?.sprites.front_default} alt={"front_default"}/>
-                        <img src={pokemon?.sprites.back_default} alt={"back_default"}/>
-                    </div>
-                ) : chooseFormState === "shiny" ? (
-                    <div>
-                        <img src={pokemon?.sprites.front_shiny} alt={"front_shiny"}/>
-                        <img src={pokemon?.sprites.back_shiny} alt={"back_shiny"}/>
-                    </div>
-                ) : "Error"}
-            </div>
+
+            {toggleForm ? (
+                <div>
+                    {chooseForm === "default" ? (
+                        <div>
+                            <img src={pokemon?.sprites.front_default} alt={"front_default"}/>
+                            <img src={pokemon?.sprites.back_default} alt={"back_default"}/>
+                        </div>
+                    ) : chooseForm === "shiny" ? (
+                        <div>
+                            <img src={pokemon?.sprites.front_shiny} alt={"front_shiny"}/>
+                            <img src={pokemon?.sprites.back_shiny} alt={"back_shiny"}/>
+                        </div>
+                    ) : "Error"}
+                </div>
+            ) : null}
+
             <button>Add favourite pokemon</button>
         </div>
     );
