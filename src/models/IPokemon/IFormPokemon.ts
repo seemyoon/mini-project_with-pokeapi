@@ -1,4 +1,4 @@
-export interface Form {
+export interface IFormPokemon {
     name: string
     url: string
 }

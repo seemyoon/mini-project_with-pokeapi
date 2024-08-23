@@ -1,5 +1,5 @@
 import {Ability} from "./IAbilityPokemon";
-import {Form} from "./IFormPokemon";
+import {IFormPokemon} from "./IFormPokemon";
 import {ISpritesPokemon} from "./ISpritesPokemon";
 import {Stat} from "./PokemonStat";
 import {IPokemonType} from "./IPokemonType";
@@ -13,7 +13,7 @@ export interface IPokemon {
     order: number
     weight: number
     abilities: Ability[]
-    forms: Form[]
+    forms: IFormPokemon[]
     sprites: ISpritesPokemon
     stats: Stat[]
     types: IPokemonType[]

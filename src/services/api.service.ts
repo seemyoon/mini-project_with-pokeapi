@@ -2,6 +2,8 @@ import axios from "axios";
 import {baseURL, urlBuilder} from "../constants/url";
 import {IPokemonPaginationModel} from "../models/IPokemonPaginationModel/IPokemonPaginationModel";
 import {IPokemon} from "../models/IPokemon/IPokemon";
+import {IFormPokemon} from "../models/IPokemon/IFormPokemon";
+import {IPokemonMainForm} from "../models/IPokemonMainForm/IPokemonMainForm";
 
 
 const axiosInstance = axios.create({
@@ -25,7 +27,12 @@ const pokemonService = {
     getPokemonById: async (id: string): Promise<IPokemon> => {
         const response = await axiosInstance.get<IPokemon>(urlBuilder.getPokemonById(id))
         return response.data
+    },
+    getForm: async (id: number): Promise<IPokemonMainForm> => {
+        const response = await axiosInstance.get<IPokemonMainForm>(urlBuilder.getFormById(id))
+        return response.data
     }
+
 }
 
 export {pokemonService}
