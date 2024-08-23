@@ -4,22 +4,28 @@ import {pokemonService} from "../services/api.service";
 import {AxiosError} from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {IPokemon} from "../models/IPokemon/IPokemon";
+import {IPokemonMainForm} from "../models/IPokemonMainForm/IPokemonMainForm";
 
 type PokemonPaginationResultType = {
-    pokemonResult: IPokemonResult[]
+    pokemonResult: IPokemonResult[],
     count: number,
-    pokemonList: IPokemon[]
+    pokemonList: IPokemon[],
+    pokemon: IPokemon | null,
+    formPokemonList: IPokemonMainForm | null
 }
 
 const initialPokemonSliceState: PokemonPaginationResultType = {
     pokemonResult: [],
     count: 0,
-    pokemonList: []
+    pokemonList: [],
+    pokemon: null,
+    formPokemonList: null
 }
+
 
 const loadPokemonWithPagination = createAsyncThunk(
     "pokemonPaginationResultSlice/loadPokemon",
-    async (offset:string, thunkAPI) => {
+    async (offset: string, thunkAPI) => {
         try {
             const resp = await pokemonService.getAllPokemon(offset)
             return thunkAPI.fulfillWithValue(resp)
@@ -33,9 +39,9 @@ const loadPokemonWithPagination = createAsyncThunk(
 
 const loadPokemonList = createAsyncThunk(
     "pokemonSlice/loadPokemon",
-    async (url:string[], thunkAPI) => {
+    async (urls: string[], thunkAPI) => {
         try {
-            const resp = await pokemonService.getPokemonList(url)
+            const resp = await pokemonService.getPokemonList(urls)
             return thunkAPI.fulfillWithValue(resp)
         } catch (error) {
             const axiosError = error as AxiosError
@@ -43,6 +49,32 @@ const loadPokemonList = createAsyncThunk(
         }
     }
 )
+
+const loadPokemonById = createAsyncThunk(
+    "pokemonSlice/loadPokemonById",
+    async (id: string, thunkAPI) => {
+        try {
+            const resp = await pokemonService.getPokemonById(id)
+            return thunkAPI.fulfillWithValue(resp)
+        } catch (error) {
+            const axiosError = error as AxiosError
+            return thunkAPI.rejectWithValue(axiosError?.response?.data)
+        }
+
+    }
+)
+
+const loadFormPokemon = createAsyncThunk(
+    "pokemonSlice/loadFormPokemon",
+    async (id:number, thunkAPI) => {
+        try {
+            const resp = await pokemonService.getForm(id)
+            return thunkAPI.fulfillWithValue(resp)
+        } catch (error) {
+            const axiosError = error as AxiosError
+            return thunkAPI.rejectWithValue(axiosError?.response?.data)
+        }
+    })
 
 export const pokemonSlice = createSlice({
     name: "pokemonSlice",
@@ -57,18 +89,51 @@ export const pokemonSlice = createSlice({
             .addCase(loadPokemonList.fulfilled, (state, action) => {
                 state.pokemonList = action.payload
             })
+            .addCase(loadPokemonById.fulfilled, (state, action) => {
+                state.pokemon = action.payload
+            })
+            .addCase(loadFormPokemon.fulfilled, (state, action) => {
+                state.formPokemonList = action.payload
+            })
+    }
+})
+
+type PokemonFormSliceStateType = {
+    chooseForm: string
+}
+
+const initialPokemonFormSliceState: PokemonFormSliceStateType ={
+    chooseForm: "default" || "shiny"
+}
+
+export const pokemonFormSlice = createSlice({
+    name: "pokemonFormSlice",
+    initialState: initialPokemonFormSliceState,
+    reducers: {
+        chooseForm: (state, action) => {
+            state.chooseForm = action.payload
+        }
     }
 })
 
 export const pokemonActions = {
     ...pokemonSlice.actions,
     loadPokemonWithPagination,
-    loadPokemonList
+    loadPokemonList,
+    loadPokemonById,
+    loadFormPokemon
 }
+
+export const pokemonFormActions ={
+    ...pokemonFormSlice.actions
+}
+
+export const {chooseForm} = pokemonFormSlice.actions
 
 export const store = configureStore({
     reducer: {
-        pokemonPaginationResultSliceState: pokemonSlice.reducer
+        pokemonSliceState: pokemonSlice.reducer,
+        pokemonFormSlice: pokemonFormSlice.reducer,
     }
 })
 type AppDispatch = typeof store.dispatch

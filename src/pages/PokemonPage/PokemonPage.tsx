@@ -8,8 +8,7 @@ import styles from "./PokemonPageStyles.module.css"
 
 const PokemonPage = () => {
     const dispatch = useAppDispatch();
-    const {pokemonResult, count} = useAppSelector(state => state.pokemonPaginationResultSliceState)
-    const {pokemonList} = useAppSelector(state => state.pokemonPaginationResultSliceState)
+    const {pokemonResult, count, pokemonList} = useAppSelector(state => state.pokemonSliceState)
     const [searchParams] = useSearchParams()
     const queryOffset = searchParams.get("offset")
 
