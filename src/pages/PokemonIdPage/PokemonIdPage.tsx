@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {pokemonActions, useAppDispatch, useAppSelector} from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import PokemonFormComponent from "../../components/PokemonFormListComponent/PokemonFormComponent";
+import {pokemonActions} from "../../redux/slices/pokemonSlice";
+import SearchComponent from "../../components/SearchComponent/SearchComponent";
 
 const PokemonIdPage = () => {
     const {toggleForm, chooseForm} = useAppSelector(state => state.pokemonFormSlice)
     const params = useParams()
     const dispatch = useAppDispatch()
-    const {pokemon} = useAppSelector(state => state.pokemonSliceState)
+    const {pokemon, pokemonResult} = useAppSelector(state => state.pokemonSliceState)
 
     useEffect(() => {
         if (params.id) {
@@ -16,8 +18,22 @@ const PokemonIdPage = () => {
     }, [dispatch, params.id]);
 
 
+    const handleOfFavouritePokemon = () => {
+        if (params.id && chooseForm) {
+            const favouritePokemon = {
+                id: params.id,
+                form: chooseForm
+            }
+            localStorage.setItem("favouritePokemon", JSON.stringify(favouritePokemon));
+        }
+    }
+
+
     return (
         <div>
+            {/*<div>*/}
+            {/*    <HeaderComponent/>*/}
+            {/*</div>*/}
             <h2>{pokemon?.name}</h2>
             <img src={pokemon?.sprites.front_default} alt={"pokemon"}/>
             <div>
@@ -52,7 +68,7 @@ const PokemonIdPage = () => {
                 </div>
             ) : null}
 
-            <button>Add favourite pokemon</button>
+            <button disabled={!toggleForm} onClick={handleOfFavouritePokemon}>Add favourite pokemon</button>
         </div>
     );
 };

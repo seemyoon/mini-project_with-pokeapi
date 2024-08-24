@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {IPokemonMainForm} from "../../models/IPokemonMainForm/IPokemonMainForm";
-import {chooseForm, toggleForm, useAppDispatch} from "../../redux/store";
+import {useAppDispatch} from "../../redux/store";
+import {chooseForm, toggleForm} from "../../redux/slices/pokemonFormSlice";
 
 interface IProps {
     pokemonForm: IPokemonMainForm | null
