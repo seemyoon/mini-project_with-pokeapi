@@ -55,3 +55,15 @@ export const loadFormPokemon = createAsyncThunk(
         }
     })
 
+export const loadFormPokemonByUrl = createAsyncThunk(
+    "pokemonSlice/loadFormPokemonByUrl",
+    async (url: string[], thunkAPI) => {
+        try {
+            const resp = await pokemonService.getFormByUrl(url)
+            return thunkAPI.fulfillWithValue(resp)
+        } catch (error) {
+            const axiosError = error as AxiosError
+            return thunkAPI.rejectWithValue(axiosError?.response?.data)
+        }
+    }
+)

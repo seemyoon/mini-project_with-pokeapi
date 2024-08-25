@@ -3,7 +3,7 @@ import {IPokemon} from "../../models/IPokemon/IPokemon";
 import {IPokemonMainForm} from "../../models/IPokemonMainForm/IPokemonMainForm";
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    loadFormPokemon,
+    loadFormPokemon, loadFormPokemonByUrl,
     loadPokemonById,
     loadPokemonList,
     loadPokemonWithPagination
@@ -14,7 +14,8 @@ type PokemonPaginationResultType = {
     count: number,
     pokemonList: IPokemon[],
     pokemon: IPokemon | null,
-    formPokemonList: IPokemonMainForm | null
+    formPokemonList: IPokemonMainForm | null,
+    urlForm: IPokemonMainForm[]
 }
 
 const initialPokemonSliceState: PokemonPaginationResultType = {
@@ -22,14 +23,16 @@ const initialPokemonSliceState: PokemonPaginationResultType = {
     count: 0,
     pokemonList: [],
     pokemon: null,
-    formPokemonList: null
+    formPokemonList: null,
+    urlForm: []
 }
 
 
 export const pokemonSlice = createSlice({
     name: "pokemonSlice",
     initialState: initialPokemonSliceState,
-    reducers: {},
+    reducers: {
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loadPokemonWithPagination.fulfilled, (state, action) => {
@@ -45,13 +48,18 @@ export const pokemonSlice = createSlice({
             .addCase(loadFormPokemon.fulfilled, (state, action) => {
                 state.formPokemonList = action.payload
             })
+            .addCase(loadFormPokemonByUrl.fulfilled, (state, action) => {
+                state.urlForm = action.payload
+            })
     }
 })
+
 
 export const pokemonActions = {
     ...pokemonSlice.actions,
     loadPokemonWithPagination,
     loadPokemonList,
     loadPokemonById,
-    loadFormPokemon
+    loadFormPokemon,
+    loadFormPokemonByUrl
 }

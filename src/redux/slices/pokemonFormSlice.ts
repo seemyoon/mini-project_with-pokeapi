@@ -1,13 +1,11 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 type PokemonFormSliceStateType = {
-    chooseForm: string,
-    toggleForm: boolean
+    chooseFormId: number,
 }
 
-const initialPokemonFormSliceState: PokemonFormSliceStateType ={
-    chooseForm: "default" || "shiny",
-    toggleForm: false
+const initialPokemonFormSliceState: PokemonFormSliceStateType = {
+    chooseFormId: 0
 }
 
 export const pokemonFormSlice = createSlice({
@@ -15,15 +13,12 @@ export const pokemonFormSlice = createSlice({
     initialState: initialPokemonFormSliceState,
     reducers: {
         chooseForm: (state, action) => {
-            state.chooseForm = action.payload
-        },
-        toggleForm: (state, action) => {
-            state.toggleForm = action.payload
+            state.chooseFormId = action.payload
         }
     }
 })
-export const pokemonFormActions ={
+export const pokemonFormActions = {
     ...pokemonFormSlice.actions
 }
 
-export const {chooseForm, toggleForm} = pokemonFormSlice.actions
+export const {chooseForm} = pokemonFormSlice.actions

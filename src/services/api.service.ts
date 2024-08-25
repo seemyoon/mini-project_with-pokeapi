@@ -3,7 +3,6 @@ import {baseURL, urlBuilder} from "../constants/url";
 import {IPokemonPaginationModel} from "../models/IPokemonPaginationModel/IPokemonPaginationModel";
 import {IPokemon} from "../models/IPokemon/IPokemon";
 import {IPokemonMainForm} from "../models/IPokemonMainForm/IPokemonMainForm";
-import {IPokemonType} from "../models/IPokemon/IPokemonType";
 
 
 const axiosInstance = axios.create({
@@ -31,14 +30,21 @@ const pokemonService = {
     getForm: async (id: number): Promise<IPokemonMainForm> => {
         const response = await axiosInstance.get<IPokemonMainForm>(urlBuilder.getFormById(id))
         return response.data
+    },
+    getFormByUrl: async (urls: string[]): Promise<IPokemonMainForm[]> => {
+        const resp = await Promise.all(urls.map(url => axiosInstance.get<IPokemonMainForm>(url)));
+        return resp.map(res => res.data)
+        // await axiosInstance.get<IPokemonMainForm>(url)
+        // return resp.data
     }
+
 }
 
 const pokemonSearchService = {
-    getPokemonByName: async (name: string):Promise<IPokemon> => {
-        const resp = await  axiosInstance.get<IPokemon>(urlBuilder.getPokemonBySearch.getPokemonByName(name))
+    getPokemonByName: async (name: string): Promise<IPokemon> => {
+        const resp = await axiosInstance.get<IPokemon>(urlBuilder.getPokemonBySearch.getPokemonByName(name))
         return resp.data
     }
 }
 
-export {pokemonService,pokemonSearchService}
+export {pokemonService, pokemonSearchService}
