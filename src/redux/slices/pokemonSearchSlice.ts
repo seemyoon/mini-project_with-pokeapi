@@ -11,6 +11,7 @@ type PokemonSearchSliceState = {
     pokemonByNameResult: IPokemon | null,
     pokemonByAbilityResult: IPokemonMainAbility | null,
     pokemonByTypeResult: IPokemonMainTypes | null,
+    allPokemon: { name: string; url: string }[] | null,
     error: string | null;
 
 }
@@ -19,6 +20,7 @@ const initialPokemonSearchSliceState: PokemonSearchSliceState = {
     pokemonByNameResult: null,
     pokemonByAbilityResult: null,
     pokemonByTypeResult: null,
+    allPokemon: null,
     error: null,
 }
 
@@ -59,5 +61,5 @@ export const pokemonSearchActions = {
     ...pokemonSearchSlice.actions,
     loadPokemonByName,
     loadPokemonByAbility,
-    loadPokemonByTypes
+    loadPokemonByTypes,
 }
