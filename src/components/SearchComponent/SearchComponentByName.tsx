@@ -1,10 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../../redux/store";
+import {useAppDispatch, useAppSelector} from "../../redux/store";
 import React, {useEffect, useState} from "react";
-import { pokemonSearchActions } from "../../redux/slices/pokemonSearchSlice";
-import { useNavigate } from "react-router-dom";
+import {pokemonSearchActions} from "../../redux/slices/pokemonSearchSlice";
+import {useNavigate} from "react-router-dom";
 
 const SearchComponentByName = () => {
-    const { pokemonByNameResult, error } = useAppSelector(state => state.pokemonSearchSlice);
+    const {pokemonByNameResult, error} = useAppSelector(state => state.pokemonSearchSlice);
     const dispatch = useAppDispatch();
     const [searchItem, setSearchItem] = useState("");
     const navigate = useNavigate();
@@ -15,10 +15,6 @@ const SearchComponentByName = () => {
     };
 
     useEffect(() => {
-        if (searchItem && !(searchItem === "") ) dispatch(pokemonSearchActions.loadPokemonByName(searchItem));
-    }, [dispatch, searchItem ]);
-
-    useEffect(() => {
         if (pokemonByNameResult?.name) {
             navigate(`/searchPokemonPage/${pokemonByNameResult.name}`);
         } else if (error) {
@@ -26,17 +22,12 @@ const SearchComponentByName = () => {
         }
     }, [navigate, pokemonByNameResult, error]);
 
-    const handleSearchClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleSearchClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        if (searchItem) {
-            if (pokemonByNameResult?.name) {
-                navigate(`/searchPokemonPage/${pokemonByNameResult.name}`);
-            } else if (error) {
-                navigate(`/searchPokemonPageError/`);
-            }
-        }
-    };
 
+        if (searchItem.trim()) await dispatch(pokemonSearchActions.loadPokemonByName(searchItem));
+
+    };
 
     return (
         <div>
