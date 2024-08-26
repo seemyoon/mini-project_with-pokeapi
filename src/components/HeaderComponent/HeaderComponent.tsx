@@ -7,7 +7,7 @@ const HeaderComponent = () => {
         <div>
             <Link to={"/"}>Home</Link>
             bulbasaur arceus pikachu
-            <SearchComponent/>
+            <SearchComponent/> static multitype
         </div>
     );
 };

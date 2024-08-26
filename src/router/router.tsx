@@ -3,9 +3,10 @@ import PokemonPage from "../pages/PokemonPage/PokemonPage";
 import PokemonIdPage from "../pages/PokemonIdPage/PokemonIdPage";
 import FavouritePokemonPage from "../pages/FavouritePokemon/FavouritePokemonPage";
 import PokemonFormComponentById from "../components/PokemonFormComponentById/PokemonFormComponentById";
-import SearchPokemonPage from "../pages/SearchPokemonPage/SearchPokemonPage";
+import SearchPokemonPageByName from "../pages/SearchPokemonPage/SearchPokemonPageByName";
 import PokemonMainLayout from "../layouts/PokemonMainLayout";
 import SearchPokemonPageError from "../errors/SearchPokemonPageError";
+import SearchPokemonPageByAbility from "../pages/SearchPokemonPage/SearchPokemonPageByAbility";
 
 const routes: RouteObject[] = [
     {
@@ -23,7 +24,10 @@ const routes: RouteObject[] = [
                 path: "/favouritePokemon", element: <FavouritePokemonPage/>
             },
             {
-                path: "/searchPokemonPage/:name", element:<SearchPokemonPage/>
+                path: "/searchPokemonPageByAbility/:name", element:<SearchPokemonPageByAbility/>
+            },
+            {
+                path: "/searchPokemonPageByName/:name", element:<SearchPokemonPageByName/>
             },
             {
                 path:"/searchPokemonPageError/", element: <SearchPokemonPageError/>

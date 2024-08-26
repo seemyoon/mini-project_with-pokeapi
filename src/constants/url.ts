@@ -5,8 +5,9 @@ const urlBuilder = {
     getPokemonById: (id:string) => baseURL + "/pokemon/" + id,
     getFormById: (id:number) => baseURL + "/pokemon-form/" + id,
     getPokemonBySearch: {
-        getPokemonByName: (name: string) => `${baseURL}/pokemon/${name}`
-    }
+        getPokemonByName: (name: string) => `${baseURL}/pokemon/${name}`,
+        getPokemonByAbility: (nameAbility: string) => `${baseURL}/ability/${nameAbility}`
+}
 
 }
 export {baseURL, urlBuilder}

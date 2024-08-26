@@ -3,6 +3,7 @@ import {baseURL, urlBuilder} from "../constants/url";
 import {IPokemonPaginationModel} from "../models/IPokemonPaginationModel/IPokemonPaginationModel";
 import {IPokemon} from "../models/IPokemon/IPokemon";
 import {IPokemonMainForm} from "../models/IPokemonMainForm/IPokemonMainForm";
+import {IPokemonMainAbility} from "../models/IPokemonMainAbility/IPokemonMainAbility";
 
 
 const axiosInstance = axios.create({
@@ -41,6 +42,10 @@ const pokemonService = {
 const pokemonSearchService = {
     getPokemonByName: async (name: string): Promise<IPokemon> => {
         const resp = await axiosInstance.get<IPokemon>(urlBuilder.getPokemonBySearch.getPokemonByName(name))
+        return resp.data
+    },
+    getPokemonByAbility: async (nameAbility: string): Promise<IPokemonMainAbility> => {
+        const resp = await axiosInstance.get<IPokemonMainAbility>(urlBuilder.getPokemonBySearch.getPokemonByAbility(nameAbility))
         return resp.data
     }
 }

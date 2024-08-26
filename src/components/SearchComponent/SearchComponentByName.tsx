@@ -16,7 +16,7 @@ const SearchComponentByName = () => {
 
     useEffect(() => {
         if (pokemonByNameResult?.name) {
-            navigate(`/searchPokemonPage/${pokemonByNameResult.name}`);
+            navigate(`/searchPokemonPageByName/${pokemonByNameResult.name}`);
         } else if (error) {
             navigate(`/searchPokemonPageError/`);
         }

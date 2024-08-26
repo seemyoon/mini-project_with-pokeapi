@@ -6,7 +6,6 @@ import {useSearchParams} from "react-router-dom";
 import PokemonListComponent from "../../components/PokemonListComponent/PokemonListComponent";
 import styles from "./PokemonPageStyles.module.css"
 import {pokemonActions} from "../../redux/slices/pokemonSlice";
-import SearchComponent from "../../components/SearchComponent/SearchComponent";
 
 const PokemonPage = () => {
     const dispatch = useAppDispatch();

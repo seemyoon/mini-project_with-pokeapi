@@ -3,7 +3,7 @@ import {Link, useParams} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {pokemonSearchActions} from "../../redux/slices/pokemonSearchSlice";
 
-const SearchPokemonPage = () => {
+const SearchPokemonPageByName = () => {
     const params = useParams();
     const name = String(params.name);
 
@@ -31,4 +31,4 @@ const SearchPokemonPage = () => {
     );
 };
 
-export default SearchPokemonPage;
+export default SearchPokemonPageByName;
