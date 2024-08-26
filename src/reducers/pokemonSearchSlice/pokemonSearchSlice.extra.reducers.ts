@@ -10,6 +10,11 @@ export const loadPokemonByName = createAsyncThunk(
             return thunkAPI.fulfillWithValue(response)
         } catch (error) {
             const axiosError = error as AxiosError
-            return thunkAPI.rejectWithValue(axiosError?.response?.data)
+            if (axiosError) {
+                if (axiosError.response?.status === 404) {
+                    return thunkAPI.rejectWithValue("Pokemon not found");
+                }
+            }
+            return thunkAPI.rejectWithValue("An error occurred");
         }
     })

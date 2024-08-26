@@ -14,7 +14,7 @@ type PokemonPaginationResultType = {
     count: number,
     pokemonList: IPokemon[],
     pokemon: IPokemon | null,
-    formPokemonList: IPokemonMainForm | null,
+    formPokemon: IPokemonMainForm | null,
     urlForm: IPokemonMainForm[]
 }
 
@@ -23,7 +23,7 @@ const initialPokemonSliceState: PokemonPaginationResultType = {
     count: 0,
     pokemonList: [],
     pokemon: null,
-    formPokemonList: null,
+    formPokemon: null,
     urlForm: []
 }
 
@@ -46,7 +46,7 @@ export const pokemonSlice = createSlice({
                 state.pokemon = action.payload
             })
             .addCase(loadFormPokemon.fulfilled, (state, action) => {
-                state.formPokemonList = action.payload
+                state.formPokemon = action.payload
             })
             .addCase(loadFormPokemonByUrl.fulfilled, (state, action) => {
                 state.urlForm = action.payload

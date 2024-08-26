@@ -27,15 +27,13 @@ const pokemonService = {
         const response = await axiosInstance.get<IPokemon>(urlBuilder.getPokemonById(id))
         return response.data
     },
-    getForm: async (id: number): Promise<IPokemonMainForm> => {
+    getFormById: async (id: number): Promise<IPokemonMainForm> => {
         const response = await axiosInstance.get<IPokemonMainForm>(urlBuilder.getFormById(id))
         return response.data
     },
     getFormByUrl: async (urls: string[]): Promise<IPokemonMainForm[]> => {
         const resp = await Promise.all(urls.map(url => axiosInstance.get<IPokemonMainForm>(url)));
         return resp.map(res => res.data)
-        // await axiosInstance.get<IPokemonMainForm>(url)
-        // return resp.data
     }
 
 }

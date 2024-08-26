@@ -26,7 +26,6 @@ const PokemonPage = () => {
 
     return (
         <section className={styles.pokemonPage}>
-            <SearchComponent/>
             <div className={styles.pokemonList}>
                 {pokemonList.map(pokemon => <PokemonListComponent key={pokemon.id} pokemon={pokemon}/>)}
             </div>

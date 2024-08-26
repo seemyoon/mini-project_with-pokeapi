@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {IFormPokemon} from "../../models/IPokemon/IFormPokemon";
 import {useAppDispatch, useAppSelector} from "../../redux/store";
 import {pokemonActions} from "../../redux/slices/pokemonSlice";
+import {Link} from "react-router-dom";
 
 interface IProps {
     pokemonForms: IFormPokemon[] | undefined
@@ -27,10 +28,14 @@ const PokemonUrlsFormComponent: FC<IProps> = ({pokemonForms}) => {
         <div>
             <h4>Forms:</h4>
             <ul>
-                {urlForm?.map(form => <li key={form.id}>
-                    <h5>{form.name}</h5>
-                    <img src={form.sprites.front_default} alt="pokemon"/>
-                </li>)}
+                {urlForm?.map(form =>
+                    <Link key={form.id} to={"/pokemonForm/" + form.id}>
+                        <li>
+                            <h5>{form.name}</h5>
+                            <img src={form.sprites.front_default} alt="pokemon"/>
+                        </li>
+                    </Link>
+                )}
             </ul>
         </div>
     );
