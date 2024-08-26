@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchComponentByAbility from "./SearchComponentByAbility";
 import SearchComponentByName from "./SearchComponentByName";
+import SearchComponentByType from "./SearchComponentByType";
 
 
 const SearchComponent = () => {
@@ -13,6 +14,10 @@ const SearchComponent = () => {
             <div>
                 <h3>Search by ability:</h3>
                 <SearchComponentByAbility/>
+            </div>
+            <div>
+                <h3>Search by type:</h3>
+                <SearchComponentByType/>
             </div>
         </div>
     );

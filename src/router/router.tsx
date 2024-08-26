@@ -7,6 +7,7 @@ import SearchPokemonPageByName from "../pages/SearchPokemonPage/SearchPokemonPag
 import PokemonMainLayout from "../layouts/PokemonMainLayout";
 import SearchPokemonPageError from "../errors/SearchPokemonPageError";
 import SearchPokemonPageByAbility from "../pages/SearchPokemonPage/SearchPokemonPageByAbility";
+import SearchPokemonPageByType from "../pages/SearchPokemonPage/SearchPokemonPageByType";
 
 const routes: RouteObject[] = [
     {
@@ -22,6 +23,9 @@ const routes: RouteObject[] = [
             },
             {
                 path: "/favouritePokemon", element: <FavouritePokemonPage/>
+            },
+            {
+                path: "/searchPokemonPageByType/:name", element:<SearchPokemonPageByType/>
             },
             {
                 path: "/searchPokemonPageByAbility/:name", element:<SearchPokemonPageByAbility/>
