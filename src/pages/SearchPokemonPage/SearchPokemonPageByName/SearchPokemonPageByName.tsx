@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link, useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {pokemonSearchActions} from "../../redux/slices/pokemonSearchSlice";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {pokemonSearchActions} from "../../../redux/slices/pokemonSearchSlice";
+import styles from './SearchPokemonPageByName.module.css';
 
 const SearchPokemonPageByName = () => {
     const params = useParams();
@@ -15,18 +16,18 @@ const SearchPokemonPageByName = () => {
     }, [dispatch,name]);
 
     return (
-        <div>
-            <Link to={`/${pokemonByNameResult?.id}`}>
+        <div className={styles.container}>
+            <Link to={`/${pokemonByNameResult?.id}`} className={styles.link}>
                 <div>
-                    <h1>{pokemonByNameResult?.name}</h1>
+                    <h1 className={styles.title}>{pokemonByNameResult?.name}</h1>
                 </div>
                 <img
+                    className={styles.image}
                     src={pokemonByNameResult?.sprites.front_default}
                     alt={`${pokemonByNameResult?.name} `}
                     loading={"lazy"}
                 />
             </Link>
-
         </div>
     );
 };

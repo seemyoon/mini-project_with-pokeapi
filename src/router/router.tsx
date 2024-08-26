@@ -3,11 +3,11 @@ import PokemonPage from "../pages/PokemonPage/PokemonPage";
 import PokemonIdPage from "../pages/PokemonIdPage/PokemonIdPage";
 import FavouritePokemonPage from "../pages/FavouritePokemon/FavouritePokemonPage";
 import PokemonFormComponentById from "../components/PokemonFormComponentById/PokemonFormComponentById";
-import SearchPokemonPageByName from "../pages/SearchPokemonPage/SearchPokemonPageByName";
+import SearchPokemonPageByName from "../pages/SearchPokemonPage/SearchPokemonPageByName/SearchPokemonPageByName";
 import PokemonMainLayout from "../layouts/PokemonMainLayout";
-import SearchPokemonPageError from "../errors/SearchPokemonPageError";
-import SearchPokemonPageByAbility from "../pages/SearchPokemonPage/SearchPokemonPageByAbility";
-import SearchPokemonPageByType from "../pages/SearchPokemonPage/SearchPokemonPageByType";
+import SearchPokemonPageError from "../errors/SearchPokemonPageError/SearchPokemonPageError";
+import SearchPokemonPageByAbility from "../pages/SearchPokemonPage/SearchPokemonPageByAbility/SearchPokemonPageByAbility";
+import SearchPokemonPageByType from "../pages/SearchPokemonPage/SearchPokemonPageByType/SearchPokemonPageByType";
 
 const routes: RouteObject[] = [
     {

@@ -3,6 +3,7 @@ import {IPokemon} from "../../models/IPokemon/IPokemon";
 import {IPokemonMainForm} from "../../models/IPokemonMainForm/IPokemonMainForm";
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    loadFavouritePokemonById,
     loadFormPokemon, loadFormPokemonByUrl,
     loadPokemonById,
     loadPokemonList,
@@ -15,7 +16,8 @@ type PokemonPaginationResultType = {
     pokemonList: IPokemon[],
     pokemon: IPokemon | null,
     formPokemon: IPokemonMainForm | null,
-    urlForm: IPokemonMainForm[]
+    urlForm: IPokemonMainForm[],
+    favouritePokemon: IPokemon[]
 }
 
 const initialPokemonSliceState: PokemonPaginationResultType = {
@@ -24,7 +26,8 @@ const initialPokemonSliceState: PokemonPaginationResultType = {
     pokemonList: [],
     pokemon: null,
     formPokemon: null,
-    urlForm: []
+    urlForm: [],
+    favouritePokemon: []
 }
 
 
@@ -51,6 +54,9 @@ export const pokemonSlice = createSlice({
             .addCase(loadFormPokemonByUrl.fulfilled, (state, action) => {
                 state.urlForm = action.payload
             })
+            .addCase(loadFavouritePokemonById.fulfilled, (state, action) => {
+                state.favouritePokemon = action.payload
+            })
     }
 })
 
@@ -61,5 +67,6 @@ export const pokemonActions = {
     loadPokemonList,
     loadPokemonById,
     loadFormPokemon,
-    loadFormPokemonByUrl
+    loadFormPokemonByUrl,
+    loadFavouritePokemonById
 }

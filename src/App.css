@@ -1,6 +1,14 @@
-body{
+body {
     background-color: #d7eaff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
-li{
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+li {
     list-style-type: none;
 }

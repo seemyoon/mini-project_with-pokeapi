@@ -1,0 +1,34 @@
+.header {
+    background-color: #4292f6;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #ffcc00;
+}
+
+.searchButton {
+    background-color: #ffcc00;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

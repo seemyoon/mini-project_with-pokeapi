@@ -1,0 +1,10 @@
+.searchContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.searchSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
 import {useParams} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../redux/store";
-import {pokemonSearchActions} from "../../redux/slices/pokemonSearchSlice";
-import {pokemonActions} from "../../redux/slices/pokemonSlice";
-import PokemonListComponent from "../../components/PokemonListComponent/PokemonListComponent";
+import {useAppDispatch, useAppSelector} from "../../../redux/store";
+import {pokemonSearchActions} from "../../../redux/slices/pokemonSearchSlice";
+import {pokemonActions} from "../../../redux/slices/pokemonSlice";
+import PokemonListComponent from "../../../components/PokemonListComponent/PokemonListComponent";
+import styles from './SearchPokemonPageByType.module.css';
 
 const SearchPokemonPageByType = () => {
     const params = useParams();
@@ -23,10 +24,10 @@ const SearchPokemonPageByType = () => {
         console.log(urlPokemon)
     }, [dispatch, pokemonResult, pokemonByTypeResult?.pokemon]);
     return (
-        <div>
-            <div >
-                {pokemonList.map(pokemon => <PokemonListComponent key={pokemon.id} pokemon={pokemon}/>)}
-            </div>
+        <div className={styles.container}>
+            {pokemonList.map(pokemon => (
+                <PokemonListComponent key={pokemon.id} pokemon={pokemon}/>
+            ))}
         </div>
     );
 };

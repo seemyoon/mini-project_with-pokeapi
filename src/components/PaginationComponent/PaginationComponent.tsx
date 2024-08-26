@@ -3,6 +3,7 @@ import React, {FC} from 'react';
 import {useSearchParams} from "react-router-dom";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import stylesPagination from "./PaginationComponent.module.css"
 
 interface IProps {
     count: number,
@@ -22,16 +23,19 @@ const PaginationComponent: FC<IProps> = ({count}) => {
     const getAllPage = Math.ceil(count / parseInt(searchParams.get("limit") || "20"))
 
     return (
-        <Stack spacing={2}>
-            <div>
-                <Pagination
-                    count={getAllPage}
-                    color="primary"
-                    onChange={handlePageChange}
-                    page={getPage}
-                />
-            </div>
-        </Stack>
+        <div className={stylesPagination.paginationStyles}>
+            <Stack spacing={2}>
+                <div>
+                    <Pagination
+                        count={getAllPage}
+                        color="primary"
+                        onChange={handlePageChange}
+                        page={getPage}
+                    />
+                </div>
+            </Stack>
+        </div>
+
     );
 };
 

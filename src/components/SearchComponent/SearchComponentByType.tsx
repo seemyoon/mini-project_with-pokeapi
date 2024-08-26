@@ -36,7 +36,7 @@ const SearchComponentByType = () => {
                     type="text"
                     value={searchItem}
                     onChange={handleItemChange}
-                    placeholder="Type to search"
+                    placeholder="Search by Type"
                 />
                 <button onClick={handleSearchClick}>Search</button>
             </form>

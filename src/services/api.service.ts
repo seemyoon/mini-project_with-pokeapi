@@ -36,8 +36,11 @@ const pokemonService = {
     getFormByUrl: async (urls: string[]): Promise<IPokemonMainForm[]> => {
         const resp = await Promise.all(urls.map(url => axiosInstance.get<IPokemonMainForm>(url)));
         return resp.map(res => res.data)
-    }
-
+    },
+    getFavouritePokemonById: async (idAll: string[]): Promise<IPokemon[]> => {
+        const responses = await Promise.all(idAll.map(id => axiosInstance.get<IPokemon>(urlBuilder.allPokemon + "/" + id)));
+        return responses.map(res => res.data);
+    },
 }
 
 const pokemonSearchService = {

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import '../../App.css';
 import {useAppDispatch, useAppSelector} from "../../redux/store";
-import PaginationComponent from "../../components/PaginationComponent";
+import PaginationComponent from "../../components/PaginationComponent/PaginationComponent";
 import {useSearchParams} from "react-router-dom";
 import PokemonListComponent from "../../components/PokemonListComponent/PokemonListComponent";
 import styles from "./PokemonPageStyles.module.css"
@@ -23,13 +23,15 @@ const PokemonPage = () => {
         dispatch(pokemonActions.loadPokemonList(urlPokemon));
     }, [dispatch, pokemonResult]);
 
-    return (
-        <section className={styles.pokemonPage}>
-            <div className={styles.pokemonList}>
-                {pokemonList.map(pokemon => <PokemonListComponent key={pokemon.id} pokemon={pokemon}/>)}
-            </div>
-            <PaginationComponent count={count}/>
+    return (<section>
+            <section className={styles.pokemonPage}>
+                <div className={styles.pokemonList}>
+                    {pokemonList.map(pokemon => <PokemonListComponent key={pokemon.id} pokemon={pokemon}/>)}
+                </div>
+                <PaginationComponent count={count}/>
+            </section>
         </section>
+
     );
 };
 
